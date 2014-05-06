@@ -940,7 +940,10 @@
 						} else {
 							slice = buffer.slice(position, position + 10 + dv.getUint32Synch(position + 4));
 						}
-						frame = ID3Frame.parse(slice, tags.v2.version[0]);
+						try {
+							frame = ID3Frame.parse(slice, tags.v2.version[0]);
+						} catch(e) {
+						}
 						if(frame) {
 							tags.v2[frame.tag] = frame.value;
 						}
